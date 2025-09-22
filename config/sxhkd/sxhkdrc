@@ -1,0 +1,130 @@
+#
+# Phím tắt chung (không phụ thuộc WM)
+#
+
+# Mở terminal
+super + Return
+    alacritty
+
+# App launcher
+super + Space
+    rofi -show drun
+
+# Reload config sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+#
+# Phím tắt cơ bản cho bspwm
+#
+
+# Thoát / restart bspwm
+super + alt + q
+    bspc quit
+super + alt + r
+    bspc wm -r
+
+# Đóng cửa sổ
+super + q
+    bspc node -c
+
+# Thay đổi layout (tiled / monocle)
+super + m
+    bspc desktop -l next
+
+#
+# Focus & swap
+#
+
+# Di chuyển focus giữa các cửa sổ
+super + h
+    bspc node -f west
+super + j
+    bspc node -f south
+super + k
+    bspc node -f north
+super + l
+    bspc node -f east
+
+# Swap cửa sổ hiện tại với cửa sổ lớn nhất
+super + g
+    bspc node -s biggest.window
+
+# Chuyển focus giữa các desktop
+super + [
+    bspc desktop -f prev.local
+super + ]
+    bspc desktop -f next.local
+
+# Chuyển nhanh đến desktop 1-9
+super + {1-9}
+    bspc desktop -f ^{1-9}
+super + shift + {1-9}
+    bspc node -d ^{1-9}
+
+#
+# Window trạng thái (tiled/floating/fullscreen)
+#
+
+super + t
+    bspc node -t tiled
+super + shift + t
+    bspc node -t floating
+super + f
+    bspc node -t fullscreen
+
+#
+# Resize floating window (cửa sổ nổi)
+#
+
+# Mở rộng
+super + alt + h
+    bspc node -z left -20 0
+super + alt + j
+    bspc node -z bottom 0 20
+super + alt + k
+    bspc node -z top 0 -20
+super + alt + l
+    bspc node -z right 20 0
+
+# Thu nhỏ
+super + alt + shift + h
+    bspc node -z right -20 0
+super + alt + shift + j
+    bspc node -z top 0 20
+super + alt + shift + k
+    bspc node -z bottom 0 -20
+super + alt + shift + l
+    bspc node -z left 20 0
+
+# Di chuyển floating window
+super + Left
+    bspc node -v -20 0
+super + Down
+    bspc node -v 0 20
+super + Up
+    bspc node -v 0 -20
+super + Right
+    bspc node -v 20 0
+
+
+# Tăng âm lượng 5%
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# Giảm âm lượng 5%
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Tắt/bật mute
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# Tăng sáng 10%
+XF86MonBrightnessUp
+    brightnessctl set +10%
+
+# Giảm sáng 10%
+XF86MonBrightnessDown
+    brightnessctl set 10%-
+
